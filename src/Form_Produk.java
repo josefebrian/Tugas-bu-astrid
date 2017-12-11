@@ -24,8 +24,8 @@ private String [] label={"Id Produk","Id Kategori","Nama Produk","Unit Cost","Id
         BacaTabelProduk();
         isiNamaKategori();
         isiNamaSupplier();
-        fieldKategori.setVisible(false);
-        fieldSupplier.setVisible(false);
+//        fieldKategori.setVisible(false);
+//        fieldSupplier.setVisible(false);
     }
 
     void isiNamaKategori(){
@@ -544,9 +544,11 @@ private String [] label={"Id Produk","Id Kategori","Nama Produk","Unit Cost","Id
             System.out.println(sql);
                      
            if (conn.rs.next()){
-                fieldKategori.setText(conn.rs.getString("id_kategori"));  
-          
+                fieldKategori.setText(conn.rs.getString("id_kategori"));
                }
+           else{
+               System.out.println("Gagal");
+           }
            }catch(SQLException e){
             System.out.println("Koneksi Gagal"+ e.toString());
         }
