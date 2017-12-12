@@ -20,8 +20,8 @@ public class koneksi {
     
     public static String userName = "oso";
     public static String password = "1234";
-    public static String server = "192.168.0.11";
-//    public static String server = "66.96.231.241";
+//    public static String server = "192.168.0.11";
+    public static String server = "66.96.231.241";
     public static String db = "oso";
     public static String connString = "jdbc:mysql://" + server + ":3306/" + db + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 

@@ -10,6 +10,7 @@ package Oso;
 import static Oso.koneksi.userName;
 import static Oso.koneksi.connString;
 import static Oso.koneksi.password;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.*;
 
@@ -31,7 +32,37 @@ public class Form_Login extends javax.swing.JFrame {
         
         
     }
-
+public void logon(){
+            try {
+    
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Connection conn = DriverManager.getConnection(connString, userName, password);
+            String Sql="Select * from pegawai where username =? and password =?";
+            
+            
+            pst=conn.prepareStatement(Sql);
+            pst.setString(1, Field_name.getText());
+            pst.setString(2, Field_password.getText());
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+        dispose();
+        MenuUtama menu = new MenuUtama();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true); 
+            }
+            else
+            {
+               JOptionPane.showMessageDialog(this, "Username Atau Password Salah", "Konfirmasi", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            
+            
+        } catch (Exception e) {
+            
+            
+        }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,6 +121,11 @@ public class Form_Login extends javax.swing.JFrame {
                 Field_passwordMouseClicked(evt);
             }
         });
+        Field_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Field_passwordKeyPressed(evt);
+            }
+        });
         jPanel2.add(Field_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 160, 20));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 160, 10));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 160, 10));
@@ -119,12 +155,12 @@ public class Form_Login extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(12, 75, 127));
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,12 +172,12 @@ public class Form_Login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(12, 75, 127));
         jLabel5.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel5AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,36 +240,8 @@ Field_password.setText("");
     }//GEN-LAST:event_Field_passwordMouseClicked
 
     private void buttonLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogInActionPerformed
-        
-        try {
-    
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            Connection conn = DriverManager.getConnection(connString, userName, password);
-            String Sql="Select * from pegawai where username =? and password =?";
-            
-            
-            pst=conn.prepareStatement(Sql);
-            pst.setString(1, Field_name.getText());
-            pst.setString(2, Field_password.getText());
-            rs=pst.executeQuery();
-            if(rs.next())
-            {
-        dispose();
-        MenuUtama menu = new MenuUtama();
-        menu.setLocationRelativeTo(null);
-        menu.setVisible(true); 
-            }
-            else
-            {
-               JOptionPane.showMessageDialog(this, "Username Atau Password Salah", "Konfirmasi", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-            
-            
-        } catch (Exception e) {
-            
-            
-        }
+        logon();
+
     }//GEN-LAST:event_buttonLogInActionPerformed
 
     private void Field_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Field_passwordFocusGained
@@ -268,42 +276,47 @@ Field_password.setText("");
 
     }//GEN-LAST:event_jLabel2AncestorAdded
 
+    private void Field_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Field_passwordKeyPressed
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+            logon();}
+    }//GEN-LAST:event_Field_passwordKeyPressed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form_Login().setVisible(true);
-            }
-        });
-        
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Form_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Form_Login().setVisible(true);
+//            }
+//        });
+//        
+//    }
      public static void guiStart() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -334,7 +347,7 @@ Field_password.setText("");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Form_Produk().setVisible(true);
+                new Form_Login().setVisible(true);
             }
         });
     }

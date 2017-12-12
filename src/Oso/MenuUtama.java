@@ -37,7 +37,8 @@ public class MenuUtama extends javax.swing.JFrame {
         menuPegawai = new javax.swing.JMenuItem();
         menuSupplier = new javax.swing.JMenuItem();
         menuKategori = new javax.swing.JMenuItem();
-        menuPesanan = new javax.swing.JMenu();
+        menuTransaksi = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,13 +99,17 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenuBar1.add(menuMaster);
 
-        menuPesanan.setText("Pesanan");
-        menuPesanan.addActionListener(new java.awt.event.ActionListener() {
+        menuTransaksi.setText("Transaksi");
+
+        jMenuItem1.setText("Pemesanan");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPesananActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenuBar1.add(menuPesanan);
+        menuTransaksi.add(jMenuItem1);
+
+        jMenuBar1.add(menuTransaksi);
 
         setJMenuBar(jMenuBar1);
 
@@ -152,58 +157,59 @@ public class MenuUtama extends javax.swing.JFrame {
         kategori.setVisible(true);
     }//GEN-LAST:event_menuKategoriActionPerformed
 
-    private void menuPesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPesananActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        Form_Pesanan pesanan = new Form_Pesanan();
+         Form_Pesanan pesanan = new Form_Pesanan();
         pesanan.setLocationRelativeTo(null);
         pesanan.setVisible(true);
-    }//GEN-LAST:event_menuPesananActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuUtama().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuUtama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuUtama().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenuItem menuKategori;
     private javax.swing.JMenuItem menuKeluar;
     private javax.swing.JMenuItem menuLogOut;
     private javax.swing.JMenu menuMaster;
     private javax.swing.JMenuItem menuPegawai;
-    private javax.swing.JMenu menuPesanan;
     private javax.swing.JMenuItem menuProduk;
     private javax.swing.JMenuItem menuSupplier;
+    private javax.swing.JMenu menuTransaksi;
     // End of variables declaration//GEN-END:variables
 }
